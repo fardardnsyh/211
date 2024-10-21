@@ -1,0 +1,674 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper-shadow: #c9bf8d;
+  --circle-color: black;
+  --star-color: #001e80;
+  --spinner-border-color: #001e80;
+  --circle-background: black;
+  --dots-color: #001e80;
+  --audio-ping: #d18181;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: "Poppins";
+  scroll-behavior: smooth;
+  /* overflow-x: hidden; */
+}
+
+html {
+  --line-color: #e5e7eb;
+}
+
+html.dark {
+  --line-color: rgba(255, 255, 255, 0.2);
+  --circle-color: white;
+  --star-color: yellow;
+  --spinner-border-color: white;
+  --circle-background: white;
+  --dots-color: white;
+  --audio-ping: #f3f8fe;
+}
+
+.textLight {
+  @apply bg-gradient-to-b from-black to-blue-600 text-transparent bg-clip-text;
+}
+
+.textDark {
+  @apply bg-gradient-to-b  text-transparent bg-clip-text dark:from-white dark:to-blue-300;
+}
+
+.borderBlack {
+  @apply border border-black/10;
+}
+
+.container-about {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 {
+  width: 100%;
+}
+
+.c1 h1 {
+  font-family: "arial";
+  font-size: 30vw;
+  color: black;
+  font-weight: bold;
+  text-wrap: nowrap;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.container {
+  height: 200vh; /* Makes the page scrollable */
+  position: relative;
+}
+.pin-me {
+  position: relative; /* This is important for pinning */
+  background: lightcoral;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.content {
+  height: 150vh; /* Additional content to ensure scrolling */
+  background: lightblue;
+  padding: 20px;
+}
+
+/* components/HorizontalScrollText.module.css */
+.scrollContainer {
+  white-space: nowrap;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+}
+
+.scrollContent {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* components/RevealText.module.css */
+.app {
+  overflow: hidden;
+}
+
+.container {
+  padding: 1rem;
+}
+
+.reveal {
+  font-kerning: none;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.section-description {
+  @apply text-center text-[22px] leading-[30px] tracking-tight;
+}
+
+.card {
+  @apply p-10 border border-[#222222]/10  rounded-3xl shadow-[0_7px_14px_#EAEAEA] max-w-xs w-full;
+}
+
+.btn-gradient {
+  @apply bg-gradient-to-b from-black to-blue-400;
+}
+
+.btn-gradient-text {
+  @apply bg-gradient-to-t from-white to-indigo-200;
+}
+
+.paper {
+  --paper-dark: #e5c93d;
+  --paper-color: #ffed87;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-width: 325px;
+  min-height: 100px;
+  background: linear-gradient(
+    45deg,
+    var(--paper-dark),
+    50%,
+    var(--paper-color)
+  );
+  box-shadow: 10px 10px 2px var(--paper-shadow);
+  /* transform: rotate(15deg); */
+  transform-origin: top left;
+}
+
+.paper p {
+  /* margin: auto; */
+}
+
+.pin {
+  --pin-color: #d02627;
+  --pin-dark: #9e0608;
+  --pin-light: #fc7e7d;
+
+  position: absolute;
+  left: 20px;
+  width: 60px;
+  height: 50px;
+}
+
+.shadow {
+  position: absolute;
+  top: 18px;
+  left: -8px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: radial-gradient(var(--paper-shadow), 20%, rgba(201, 191, 141, 0));
+}
+
+.metal {
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  background: linear-gradient(to right, #808080, 40%, #eae8e8, 50%, #808080);
+  border-radius: 0 0 30% 30%;
+  transform: rotate(50deg);
+  transform-origin: bottom left;
+  top: 15px;
+  border-bottom: 1px solid #808080;
+}
+
+.bottom-circle {
+  position: absolute;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--pin-color);
+  background: radial-gradient(
+    circle at bottom right,
+    var(--pin-light),
+    25%,
+    var(--pin-dark),
+    90%,
+    var(--pin-color)
+  );
+}
+
+/* Barrel */
+.bottom-circle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 20px;
+  height: 30px;
+  transform: rotate(55deg);
+  transform-origin: 100% 100%;
+  border-radius: 0 0 40% 40%;
+  background: linear-gradient(
+    to right,
+    var(--pin-dark),
+    30%,
+    var(--pin-color),
+    90%,
+    var(--pin-light)
+  );
+}
+
+/* Top circle */
+.bottom-circle::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at right,
+    var(--pin-light),
+    30%,
+    var(--pin-color),
+    var(--pin-dark) 80%
+  );
+}
+
+#star-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 1000; /* Ensures the stars are on top of other elements */
+  overflow: hidden; /* Prevents stars from overflowing outside the viewport */
+}
+
+.star {
+  position: absolute;
+  width: 10px; /* Adjust size */
+  height: 10px; /* Adjust size */
+  background-color: var(--star-color);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  opacity: 0.8;
+  transform: translate(-50%, -50%) scale(1); /* Center the star and set initial scale */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@media (max-width: 400px) {
+  .star {
+    display: none;
+  }
+  .circle {
+    display: none;
+  }
+}
+
+.circle {
+  --circle-size: 40px;
+  position: fixed;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border: 1px solid var(--circle-color);
+  border-radius: 100%;
+  top: calc(var(--circle-size) / 2 * -1);
+  left: calc(var(--circle-size) / 2 * -1);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* loader css */
+.spinner {
+  position: relative;
+}
+
+.spinner::before,
+.spinner::after {
+  border: 6.7px solid var(--spinner-border-color);
+  border-radius: 50%;
+  position: absolute;
+  content: "";
+  display: block;
+}
+
+.spinner::before {
+  width: 33.6px;
+  height: 33.6px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  animation: spinner-1o3y8q 0.75s infinite linear reverse;
+}
+
+.spinner::after {
+  animation: spinner-1o3y8q 0.5s infinite linear;
+  height: 56px;
+  width: 56px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+@keyframes spinner-1o3y8q {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* animation for button theme switch */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px 2px rgba(255, 215, 0, 0.5),
+      0 0 15px 5px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 26px 5px rgba(255, 215, 0, 0.7),
+      0 0 30px 10px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px 2px rgba(255, 215, 0, 0.5),
+      0 0 15px 5px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes glow-dark {
+  0% {
+    box-shadow: 0 0 5px 2px rgba(0, 30, 128, 0.5),
+      0 0 15px 5px rgba(0, 30, 128, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 26px 5px rgba(0, 30, 128, 0.7),
+      0 0 30px 10px rgba(0, 30, 128, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px 2px rgba(0, 30, 128, 0.5),
+      0 0 15px 5px rgba(0, 30, 128, 0.3);
+  }
+}
+
+.animate-glow {
+  animation: glow-dark 2.5s infinite alternate;
+}
+
+.dark .animate-glow {
+  animation: glow 2.5s infinite alternate;
+}
+
+/* back to top button */
+#debugger {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: gray;
+  color: white;
+  padding: 2rem;
+  width: 20rem;
+}
+
+.magneto {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: none;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-nav svg {
+  width: 50vw;
+  height: 25vw;
+}
+
+#toggle-menu {
+  cursor: pointer;
+}
+
+#toggle-menu #vertical-rectangle {
+  transition: all 0.2s ease-in-out;
+}
+
+.menu {
+  transform-origin: bottom center;
+  transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.3, 0.3, 0.5, 1.2);
+  transition-delay: var(--transition-delay);
+}
+
+.menu:nth-of-type(2) {
+  --transition-delay: 0.2s;
+}
+.menu:nth-of-type(3) {
+  --transition-delay: 0.15s;
+}
+.menu:nth-of-type(4) {
+  --transition-delay: 0.1s;
+}
+.menu:nth-of-type(5) {
+  --transition-delay: 0.05s;
+}
+
+.menu--active {
+  transform: scale(1);
+}
+
+.menu--close {
+  opacity: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .container svg {
+    width: 80vw;
+    height: 40vw;
+  }
+}
+
+.preloader {
+  position: relative;
+  width: 30rem;
+  aspect-ratio: 1 / 1;
+}
+
+.ring {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-color: transparent;
+}
+
+.ring1 {
+  width: 22rem;
+  border-top: 0.5rem solid #4c4c50;
+  rotate: -45deg;
+  animation: spin 3.2s linear infinite;
+}
+
+.ring2 {
+  width: 20rem;
+  border-top: 0.5rem solid #646468;
+  rotate: -90deg;
+  animation: spin 3.4s linear infinite;
+}
+
+.ring3 {
+  width: 18rem;
+  border-top: 0.5rem solid #7d7d81;
+  rotate: -135deg;
+  animation: spin 3.6s linear infinite;
+}
+
+.ring4 {
+  width: 16rem;
+  border-top: 0.5rem solid #97979b;
+  rotate: -180deg;
+  animation: spin 3.8s linear infinite;
+}
+
+.ring5 {
+  width: 14rem;
+  border-top: 0.5rem solid #b1b1b6;
+  rotate: -225deg;
+  animation: spin 4s linear infinite;
+}
+
+.ring6 {
+  width: 12rem;
+  border-top: 0.5rem solid #cdcdd2;
+  rotate: -270deg;
+  animation: spin 4.2s linear infinite;
+}
+
+.ring7 {
+  width: 10rem;
+  border-top: 0.5rem solid #e9e9ee;
+  rotate: -315deg;
+  animation: spin 4.4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+/* search */
+/* Add this to your global stylesheet or module CSS file */
+@keyframes dot-blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.dot-container {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  background-color: var(--dots-color); /* Change to desired color */
+  border-radius: 50%;
+  animation: dot-blink 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* audio ping */
+
+.box {
+  height: 10px;
+  width: 10px;
+  background: var(--audio-ping);
+  border-radius: 50%;
+  position: relative;
+}
+
+.box::after {
+  content: "";
+  height: 5px;
+  width: 5px;
+  background: var(--audio-ping);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  opacity: 0;
+  animation: myAnimation 800ms linear infinite;
+}
+
+@keyframes myAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0.1;
+    transform: scale(10);
+  }
+}
+
+.chat-box {
+  position: relative;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #e0e0e0;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.sender {
+  justify-content: flex-end;
+}
+
+.chat-box.sender {
+  background-color: #d18181;
+  align-self: flex-end;
+}
+
+.chat-box.receiver {
+  background-color: #f70776;
+  align-self: flex-start;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box.sender::before {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  right: -15px;
+  width: 15px;
+  height: 20px;
+  z-index: 9;
+  border-radius: 0 0 0 20px;
+  background: #fff;
+}
+.chat-box.sender::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -9px;
+  width: 18px;
+  height: 15px;
+  background: #d18181;
+}
+
+.chat-box.receiver::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -15px;
+  width: 15px;
+  height: 20px;
+  z-index: 9;
+  border-radius: 0 0 20px 0;
+  background: #fff;
+}
+.chat-box.receiver::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 15px;
+  height: 15px;
+  background: #f70776;
+}
